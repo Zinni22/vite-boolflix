@@ -1,10 +1,12 @@
 <script>
+import {store} from '../store';
+
 export default {
 name: 'HeaderApp',
 
   data () {
       return{
-
+        store,
       }
   },
 
@@ -17,7 +19,15 @@ name: 'HeaderApp',
 <template>
 
     <header>
-        HEADER
+        
+        <input type="text" placeholder="Film o serie tv"
+        v-model="store.userSearch"
+        >
+
+        <button @click="$emit('search')">
+            Search
+        </button>
+        
     </header>
  
 </template>
