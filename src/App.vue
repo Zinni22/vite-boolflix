@@ -22,21 +22,34 @@ export default {
 
   methods:{
 
-  findMovies(){
-    console.log('cerco il film', this.store.userSearch);
+  findElements(category){
+    console.log('cerco il elemento', this.store.userSearch);
 
     axios
-    .get('https://api.themoviedb.org/3/search/movie', {
+    .get('https://api.themoviedb.org/3/search/' + category, {
       params: {
         api_key: 'e99307154c6dfb0b4750f6603256716d',
+        language: 'it-IT',
         query: this.store.userSearch,
+        
       }
     })
     .then((response) => {
-      console.log(response.data.results)
 
-      this.store.movies = response.data.results
+      //MOVIES
+      if( category == 'movie'){
+        console.log(response.data.results)
+        this.store.movies = response.data.results
+      }
+
+      // SERIES
+      else if(category == 'tv'){
+        console.log(response.data.results)
+        this.store.series = response.data.results
+      }
+      
     })
+
   }
 
 },
@@ -47,7 +60,7 @@ export default {
 
 <template>
 
-  <HeaderApp @search="findMovies()" />
+  <HeaderApp @search="findElements('movie'), findElements('tv')" />
 
   <MainApp />
 
