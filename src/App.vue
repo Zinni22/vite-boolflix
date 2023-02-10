@@ -22,8 +22,9 @@ export default {
 
   methods:{
 
+  // FUNZIONE PER RICHIAMARE API (film e serie tv al click)
   findElements(category){
-    console.log('cerco il elemento', this.store.userSearch);
+    console.log('cerco l\'elemento', this.store.userSearch);
 
     axios
     .get('https://api.themoviedb.org/3/search/' + category, {
