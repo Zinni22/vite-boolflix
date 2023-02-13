@@ -60,62 +60,100 @@ name: 'MainApp',
 
 <template>
 
-    <main>
+    <main class="p-5">
 
-        <!-- FILM -->
-        <h2>Movie</h2>
-        <div v-for="movie in store.movies">
+        <div class="container">
+            
+            <span>FILM</span>
 
-            <h3>
-                {{ movie.title }}
-            </h3>
+            <div class="film-container">
 
-            <img :src="generatePoster(movie.poster_path)" :alt="movie.title">
+                <!-- FILM -->
+                <div v-for="movie in store.movies" class="single-card">
+                    
+                    <img :src="generatePoster(movie.poster_path)" :alt="movie.title">
 
-            <h4>
-                {{ movie.original_title }}
-            </h4>
+                    <div class="description-texts">
 
-            <img :src="generateFlag(movie.original_language)" :alt="original_language">
+                        <p>
+                            <strong>Title: </strong>
+                            {{ movie.title }}
+                        </p>
 
-            <div>
-                <span v-for="n in generateVote(movie.vote_average)">
-                    ★ 
-                </span>
+                        <p>
+                            <strong>Original Title: </strong>
+                            {{ movie.original_title }}
+                        </p>
 
-                <span v-for="n in (5 - generateVote(movie.vote_average))">
-                    ☆ 
-                </span>
+                        <p>
+                            <strong>Language: </strong>
+                            <img :src="generateFlag(movie.original_language)" :alt="original_language">
+                        </p>
+
+                        <div class="stars">
+                            <strong>Vote: </strong>
+                            <span v-for="n in generateVote(movie.vote_average)">
+                                ★ 
+                            </span>
+
+                            <span v-for="n in (5 - generateVote(movie.vote_average))">
+                                ☆ 
+                            </span>
+                        </div>
+
+                        <p>
+                            <strong>Overview: </strong>
+                            {{ movie.overview }}
+                        </p>
+
+                    </div>
+
+                </div>
+
             </div>
 
-        </div>
 
-        <!-- SERIE TV -->
-        <h2>Series</h2>
-        <div v-for="serie in store.series">
+            <span>SERIE TV</span>
 
-            <h3>
-                {{ serie.name }}
-            </h3>
+            <div class="film-container" >
+                <!-- SERIE TV -->
+            
+                <div v-for="serie in store.series" class="single-card">
+                    
+                    <img :src="generatePoster(serie.poster_path)" :alt="serie.name">
 
-            <img :src="generatePoster(serie.poster_path)" :alt=" serie.name">
+                    <div class="description-texts">
 
-            <h4>
-                {{ serie.original_name }}
-            </h4>
+                        <p>
+                            <strong>Title: </strong>
+                            {{ serie.name }}
+                        </p>
 
-            <img :src="generateFlag(serie.original_language)" :alt="original_language">
+                        <p>
+                            <strong>Original Title: </strong>
+                            {{ serie.original_name }}
+                        </p>
 
-            <div>
-                <span v-for="n in generateVote(serie.vote_average)">
-                    ★ 
-                </span>
+                        <p>
+                            <strong>Language: </strong>
+                            <img :src="generateFlag(serie.original_language)" :alt="original_language">
+                        </p>
 
-                <span v-for="n in (5 - generateVote(serie.vote_average))">
-                    ☆ 
-                </span>
+                        <div class="stars">
+                            <strong>Vote: </strong>
+                            <span v-for="n in generateVote(serie.vote_average)">
+                                ★ 
+                            </span>
+
+                            <span v-for="n in (5 - generateVote(serie.vote_average))">
+                                ☆ 
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-
         </div>
         
     </main>
@@ -124,8 +162,60 @@ name: 'MainApp',
 
 <style lang="scss" scoped>
 
-div{
-    margin-bottom: 70px;
+main{
+    background-color: rgb(62, 62, 62);
+    color: white;
+
+    span{
+        font-weight: bold;
+    }
+
+    .film-container{
+
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .single-card{
+            width: calc(100% / 4 - 20px);
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 30px;
+
+            img{
+                width: 100%;
+            }
+
+            .description-texts{
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                font-size: 0.8rem;
+                background-color: rgba(0, 0, 0, 0.8);
+                border: 1px solid white;
+                display: none;
+
+                img{
+                    width: 40px;
+                }
+
+                .stars span{
+                    color: yellow;
+                }
+            }
+
+        }
+        .single-card:hover{
+            .description-texts{
+                display: block;
+            }
+
+        }
+    }
+
 }
 
 </style>
