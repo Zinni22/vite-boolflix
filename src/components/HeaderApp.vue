@@ -24,12 +24,12 @@ name: 'HeaderApp',
         BOOLFLIX
       </a></span>
         
-        <form action="">
+        <form action="" @submit.prevent="$emit('search')">
           <input type="text" placeholder="Ricerca Film e Serie tv"
           v-model="store.userSearch"
           >
 
-          <button @click="$emit('search')">
+          <button>
               Cerca
           </button>
         </form>

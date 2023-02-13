@@ -149,6 +149,11 @@ name: 'MainApp',
                                 ☆ 
                             </span>
                         </div>
+
+                        <p>
+                            <strong>Overview: </strong>
+                            {{ movie.overview }}
+                        </p>
                     </div>
 
                 </div>
@@ -197,7 +202,7 @@ main{
                 background-color: rgba(0, 0, 0, 0.8);
                 border: 1px solid white;
                 display: none;
-
+                overflow: auto;
                 img{
                     width: 40px;
                 }
