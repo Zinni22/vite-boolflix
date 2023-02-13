@@ -152,7 +152,7 @@ name: 'MainApp',
 
                         <p>
                             <strong>Overview: </strong>
-                            {{ movie.overview }}
+                            {{ serie.overview }}
                         </p>
                     </div>
 
